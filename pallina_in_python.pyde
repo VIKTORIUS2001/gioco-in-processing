@@ -6,6 +6,8 @@ g2=0
 b2=0
 xrac1=330
 yrac1=600-25
+xrac2=330
+yrac2=0
 xrad=50
 yrad=50
 xrad2=0
@@ -65,14 +67,26 @@ def draw():
         
     fill(255,255,255)    
     rect(xrac1,yrac1,100,25)
+    
+    fill(2555,255,255)
+    rect(xrac2,yrac2,100,25)
+    
+    
+    
+    
 
 def keyPressed():
-    global xrac1
+    global xrac1,xrac2
     if(keyCode==LEFT):
         xrac1-=15
     if(keyCode==RIGHT):
         xrac1+=15
-
+    if(keyCode==):
+        xrac1-=15
+    if(keyCode==RIGHT):
+        xrac1+=15
     
+
+
 
     
