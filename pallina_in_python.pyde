@@ -16,6 +16,9 @@ xpos=0;
 ypos=0;
 xVers=1
 yVers=-1
+score1=0
+score2=0
+
 def setup():
     global xpos,ypos
     xpos=200
@@ -34,14 +37,20 @@ def setup():
     rect(20,4,40,300)
     
     
-def tocca(xpos,ypos,xrac1,yrac1,yVers):
+def tocca_rac1(xpos,ypos,xrac1,yrac1,yVers):
     if(ypos>=yrac1-25 and (xpos+25>xrac1 and xpos-25<xrac1+100) ):
         return(True)
     else:
         return(False)
         
+def tocca_rac2(xpos,ypos,xrac2,yrac2,yVers):
+    if(ypos<=yrac2+50 and (xpos+25>xrac2 and xpos-25<xrac2+100) ):
+        return(True)
+    else:
+        return(False)
+        
 def draw():
-    global xpos,ypos,xVers,yVers,r,g,b,r2,b2,g2,xrad,yrad,xrad2,yrad2,xrac1,yra1
+    global xpos,ypos,xVers,yVers,r,g,b,r2,b2,g2,xrad,yrad,xrad2,yrad2,xrac1,yra1,xrac2,score1,score2
     xpos=xpos+xVers*4
     ypos=ypos+yVers*4
     background(62)
@@ -50,29 +59,48 @@ def draw():
     b=b2
     fill(r,g,b)
     ellipse(xpos,ypos,xrad,yrad)
-    if(xpos>width-15 or xpos<0+15):
+    if(xpos>width-xrad/2 or xpos<0+xrad/2):
         xVers*=-1
         r2=random(0,255)
         g2=random(0,255)
         b2=random(0,255)
         
-    if(ypos>height-15 or ypos<0+15):
+    if(ypos>height-xrad/2 or ypos<0+xrad/2):
         yVers*=-1
         r2=random(0,255)
         g2=random(0,255)
         b2=random(0,255)
         
-    if tocca(xpos,ypos,xrac1,yrac1,yVers):
+    if tocca_rac1(xpos,ypos,xrac1,yrac1,yVers):
+        yVers*=-1
+    
+    if tocca_rac2(xpos,ypos,xrac2,yrac2,yVers):
         yVers*=-1
         
+   
+
     fill(255,255,255)    
     rect(xrac1,yrac1,100,25)
     
-    fill(2555,255,255)
+    textSize(30)
+    fill(255,0,0)  
+    text(score1,xrac1+10,height-1)     
+    
+    fill(255,255,255)
     rect(xrac2,yrac2,100,25)
     
+    textSize(30)
+    fill(255,0,0)  
+    text(score2,xrac2+10,24)      
     
     
+    if(ypos<=xrad/2):
+        score1=score1+1
+    
+    if(ypos>=height-xrad/2):
+        print("incremento")
+        score2=score2+1
+        
     
 
 def keyPressed():
@@ -81,10 +109,10 @@ def keyPressed():
         xrac1-=15
     if(keyCode==RIGHT):
         xrac1+=15
-    if(keyCode==):
-        xrac1-=15
-    if(keyCode==RIGHT):
-        xrac1+=15
+    if(key=="a"):
+        xrac2-=15
+    if(key=="d"):
+        xrac2+=15
     
 
 
